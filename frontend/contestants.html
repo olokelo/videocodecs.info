@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>videocodecs.info | contestants</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/contestants.css">
+  </head>
+  <body style="max-width:40em;">
+    <h1>Contestants</h1>
+    <span>A bit of knowledge about benchmarked codecs</span>
+
+    <div class="contestant-block" style="border-color: #f04;">
+
+      <h2>H264</h2>
+      <hr>
+
+      <p>H.264/AVC/MPEG-4 part 10 is by far the most popular codec used nowadays. It was standardized in year 2003 by MPEG committee and brought a bunch of improvements above its predecessors (mainly H.263 and MPEG-2).</p>
+
+      <p>It has been slowly adopted since then and now you can find it almost everywhere. In digital cameras, Blu-ray Discs, videos on the web, TV, security cameras, video calls, mobile phones and much more.</p>
+
+      <p>All of that makes it a great codec for maximum compatibility. Almost every hardware video decoder will have support for decoding H.264. Probably this aspect made it so popular in recent years, no other codec could come even close to it.</p>
+
+      <h3>x264</h3>
+
+      <p><a href="https://x264.org">x264</a> is one of the most popular and best optimized software encoder of H.264. It is also open source, GPL licensed and well integrated into <a href="https://ffmpeg.org">FFmpeg</a>.</p>
+
+      <h3>vaapi</h3>
+
+      <p><a href="https://01.org/temp-linuxgraphics/community/vaapi">h264 vaapi</a> is a hardware H.264 implementation that enables encoding/decoding video streams on a variety of video cards that support it (in my case Intel Arc A750). It's also integrated into FFmpeg.</p>
+
+    </div>
+
+
+    <div class="contestant-block" style="border-color: #f40;">
+
+      <h2>H265</h2>
+      <hr>
+
+      <p>H.265/HEVC/MPEG-H part 2 is a successor of <a href="TODO">H.264</a> designed to bring HDR, higher bit depths and resolutions and improve compression efficiency. The standard was published in 2013 by MPEG committee.</p>
+
+      <p>The main problem with HEVC especially on the web remains its patent situation. Many companies decided either to stick to H.264 or even develop their own competing codecs (see VP9). Despite that, H.265 now is used in modern smartphones, security cameras and movie distribution.</p>
+
+      <p>The efficiency gain over H.264 is claimed to be around 25..50%. HEVC employs a new transform called DST in addition to integer DCT used in H.264. It also adds larger macroblock sizes, improves intra and motion vector prediction. All of that makes it more computationally expensive than H.264 but still within accetable range for hardware of last decade.</p>
+
+      <h3>x265</h3>
+
+      <p><a href="https://x265.org">x265</a> is a software H.265 encoder that was created based on the x264 codebase. It is also open source, GPL licensed and well integrated into <a href="https://ffmpeg.org">FFmpeg</a>.</p>
+
+      <h3>vaapi</h3>
+
+      <p><a href="https://01.org/temp-linuxgraphics/community/vaapi">hevc vaapi</a> is also a hardware accelerated version of HEVC. Intel supports HEVC vaapi in GPUs from around 2015 and newer.</p>
+
+    </div>
+
+
+    <div class="contestant-block" style="border-color: #f08;">
+
+      <h2>H266</h2>
+      <hr>
+
+      <p>H.266/VVC/MPEG-I part 3 is a new high efficiency video codec that improves upon HEVC. The standard developed by VCEG and MPEG was finalized in mid 2020. It is designed to address challenges of modern video such as high framerates and resolutions (up to 16K), HDR support and 360 degree video.</p>
+
+      <p>It is estimated that VVC brings up to 50% bitrate savings compared to HEVC while still retaining good visual quality. However, just as HEVC it is still patent encumbered which would probably slow down its mass adoption. Some of the improvements over HEVC are: increasing the maximum size of macroblock to 128x128, geometric block partitioning, special motion compensation for 360 degree video, affine motion and more DCT/DST variants.</p>
+
+      <h3>vvenc/vvdec</h3>
+
+      <p><a href="https://github.com/fraunhoferhhi/vvenc">vvenc</a> is an open source VVC encoder created by Fraunhofer HHI with the focus on code readability and correctness. It tries to acheive high performance without dirty low level assembly tricks. The same goes for <a href="https://github.com/fraunhoferhhi/vvdec">vvdec</a>. Both of them can be <a href="https://github.com/fraunhoferhhi/vvenc/wiki/FFmpeg-Integration">compiled</a> into FFmpeg. However there are plans to integrate VVC decoding into <a href="https://github.com/ffvvc/FFmpeg">core FFmpeg</a>.</p>
+
+      <h3>hardware acceleration</h3>
+
+      <p>Chips with hardware accelerated VVC decoding support are produced by Mediatek, Allegro DVT and Realtek.<br>
+      It's expected to see wider support of VVC in hardware due to its <a href="https://dvb.org/news/dvb-adds-vvc-to-its-video-coding-toolbox/">addition</a> to DVB video toolbox.</p>
+
+    </div>
+
+
+    <div class="contestant-block" style="border-color: #0f4;">
+
+      <h2>EVC</h2>
+      <hr>
+
+      <p>EVC/MPEG-5 part 1 is a video codec standardized by MPEG committee in April 2020. It is supported by tech companies such as Samsung, Huawei and Qualcomm. The main idea behind EVC is to have 2 distinct profiles</p>
+
+      <p>
+      <b>baseline</b> - royalty-free that includes  technologies either royalty-free or with their patents expired <br>
+      <b>main</b> - more space efficient codec using patented enhancing tools
+      </p>
+
+      <p>The baseline profile tends to provide higher visual fidelity than H264 while main outperforms even H265.</p>
+
+      <p>Despite its name, Essential Video Codec is actually not widely used (and probably will never be). The release timing was pretty bad, in the same year the VVC codec was finalized and got far more attention in terms of optimization, development and adoption. Also the royalty-free AV1 codec was on the rise providing much higher efficiency than baseline EVC. That's really unfortunate as EVC is a really well-engineered and advanced codec packed with modern video compression techniques.</p>
+
+      <h3>xeve</h3>
+
+      <p><a href="https://github.com/mpeg5/xeve">xeve</a> is an open-source EVC software en/decoder. Its development is driven mainly by Samsung and MPEG engineers. Unfortunately xeve not well optimized and contains bugs, however the sole existance of it is awesome. The authors also provide an <a href="https://github.com/mpeg5/ffevc">FFmpeg patch</a>.</p>
+
+      <h3>hardware acceleration</h3>
+
+      <p>no.</p>
+
+    </div>
+
+
+    <div class="contestant-block" style="border-color: #cc0;">
+
+      <h2>AVS2</h2>
+      <hr>
+
+      <p>AVS2/IEEE1857.4 is the second generation of Chinese codec AVS. It was developed by AVS Workgroup in 2014, then was standardized in China in late 2016 and then by IEEE in 2019. The codec is surprisingly efficient and can outperform even H265 however it is not widely used outside of Chinese TV broadcasts.</p>
+
+      <p>This codec employs many advanced tools found in existing codecs such as iDCT and wavelet transformations, variable block sizes and arithmetic coding. It has also a few unique innovations. Mainly the use of multi-hypothesis techniques and the F frame type. Also AVS2 uses a quadtree block partition scheme to be more efficient at high resolutions.</p>
+
+      <h3>xavs2/davs2</h3>
+
+      <p><a href="https://github.com/pkuvcl/xavs2">xavs2</a> is an open source high performance software encoder of AVS2-P2 while <a href="https://github.com/pkuvcl/davs2">davs2</a> is the decoder. Both were developed by Peking University Video Coding Laboratory and are GPL licensed. FFmpeg version 6 supports them both out of the box.</p>
+
+      <h3>hardware acceleration</h3>
+
+      <p>There are some chip vendors that provide hardware acceleration for AVS codec family such as Mediatek supporting AVS2 video decoding in MT9602 or Hisilicon with their HiVXE Engine supporting AVS, AVS+, AVS2 and even AVS3.</p>
+
+      <p>Those chips would be most commonly found in smart TVs which makes sense.</p>
+
+    </div>
+
+
+    <div class="contestant-block" style="border-color: #a70;">
+
+      <h2>AVS3</h2>
+      <hr>
+
+      <p>AVS3 is the most recent codec from the AVS family. It aims to bring a significant coding improvement over AVS2 and HEVC. The specification was divided into 2 phases, the first one (main profile) finished in 2019 and the second (high profile) in 2021.<br>
+      In 2022 it was <a href="https://dvb.org/news/dvb-test-content-for-vvc-and-avs3-codecs-now-available/">added</a> to worldwide DVB standard alongside VVC.</p>
+
+      <p>AVS3 has more flexible coding tree and block partitioning shemes compared to previous generation AVS codecs. It also employs new DCT-VII and DST-VII transforms. The work on AVS3 was sponsored by organizations including Peking University, Pengcheng Laboratory and Huawei. Intel partnered with Boya and created <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/scalable-video-technology.html">SVT-AVS3</a> which to my knowledge is not available to the public.</p>
+
+      <h3>uavs3e/uavs3d</h3>
+
+      <p><a href="https://github.com/uavs3">uavs3</a> is an open source high performance software encoder and decoder of AVS3-P2. The project was initialized by the Peking University Shenzhen Graduate School and over the time was optimized for x86 and arm processors. FFmpeg 6 supports only avs3 decoding via <a href="https://github.com/uavs3/uavs3d">uavs3d</a>.</p>
+
+      <h3>hardware acceleration</h3>
+
+      <p>Hisilicon supports AVS3 hardware decoding on HiVXE Engine, Mediatek Pentonic 2000 is also capable of decoding AVS3.</p>
+      <p>We should see more AVS3 hardware decoders since it was added to DVB toolbox.</p>
+
+    </div>
+
+
+    <div class="contestant-block" style="border-color: #0c9;">
+
+      <h2>VP9</h2>
+      <hr>
+
+      <p>VP9 is an open and royalty-free codec created by Google. Published in 2013 it was quickly adopted by Google's Chrome browser. This led to VP9 being the most efficient web-friendly codec of that time.</p>
+
+      <p>Just like VP8 was made to compete with H.264, VP9 aims to compete with H.265 whilest being free to use on media streaming platforms. VP9 at first was deployed to Google's YouTube video platform, but since then it also found use in Netflix, Wikimedia and many other web services.</p>
+
+      <p>Having such a big company was crucial to widespread adoption of VP9 in hardware. Google's Android has VP9 decoding since 2013 (the year VP9 was finalized) and many manufacturers such as Intel, MediaTek, Qualcomm and Samsung have developed their hardware accelerated VP9 en/decoders.</p>
+
+      <h3>libvpx</h3>
+
+      <p><a href="https://www.webmproject.org/vp9/">libvpx</a> is an open-source VP8/9 software encoder developed by Google. It is available in <a href="https://ffmpeg.org">FFmpeg</a>.</p>
+
+      <h3>vaapi</h3>
+
+      <p>Hardware accelerated VP9 encoding is available in Intel chips since around 2016 (Kaby Lake).</p>
+
+    </div>
+
+
+    <div class="contestant-block" style="border-color: #0bf;">
+
+      <h2>AV1</h2>
+      <hr>
+
+      <p>AV1 is a successor of <a href="TODO">VP9</a> built out of many codec concepts (mainly: Google's VP10, Xiph's Daala and Cisco's Thor). It was released in 2018 by the Alliance for Open Media organization which is a consortium of technology and media companies. One of the key motivations behind AV1's development was the increasing need for video codecs that do not require patent licenses.</p>
+
+      <p>AV1 received a lot of positive attention and adoption. Baked by over 50 companies it quickly started replacing VP9. AV1 decoding support was added to Google's Chrome browser around 2018. The early days were rough because the reference encoder (AOM) was painfully slow. It took a few years for it to catch up (SVT encoder helped a lot) and to become one of the most efficient codecs, outperforming HEVC in benchmarks.</p>
+
+      <p>As of 2023 it's already used in YouTube, Netflix, Meta, Google Duo and OBS. Hardware accelerated AV1 is available in chips made in recent years by Intel, Google, Nvidia, AMD, Qualcomm and MediaTek. The main competitor of AV1 is <a href="TODO">VVC</a>.</p>
+
+      <h3>libaom</h3>
+
+      <p><a href="https://aomedia.googlesource.com/aom/">libaom</a> is an open-source library developed by the Alliance for Open Media and serves as the primary implementation of the AV1 codec.</p>
+
+      <h3>svt-av1</h3>
+
+      <p><a href="https://gitlab.com/AOMediaCodec/SVT-AV1">Scalable Video Technology for AV1</a> is an open-source AV1 encoder designed with performance and scalability in mind. It's developed primarily by Intel and Netflix engineers for practical uses. SVT-AV1 right now is much faster than the reference implementation thanks to a lot of optimizations on assembly level.</p>
+
+      <h3>vaapi</h3>
+
+      <p>As of 2023 hardware accelerated AV1 encoding for Intel is only available on its discrete GPU series. AV1 vaapi is not yet in FFmpeg by default but it's possible to build FFmpeg with AV1 vaapi encoding support from <a href="https://github.com/intel/cartwheel-ffmpeg">patches</a> provided by Intel.</p>
+
+      <h3>dav1d</h3>
+
+      <p><a href="https://code.videolan.org/videolan/dav1d">dav1d</a> is a <i>blazingly fast</i> open-source software decoder of AV1 developed by VideoLAN. It includes a ton of platform dependent optimizations which make AV1 decoding very fast even on low end hardware. In this benchmark all AV1 codecs are decoded using it.</p>
+
+    </div>
+
+
+    <div class="contestant-block" style="border-color: #06c;">
+
+      <h2>AV2</h2>
+      <hr>
+
+      <p>AV2/AVM - The next big codec that will come after <a href="TODO">AV1</a>. As of July 2023 it has not been released yet but its development started around 2018. AV2 is strictly an experimental codec from Alliance for Open Media based. It was <a href="https://www.phoronix.com/news/AVIF-Experimental-AV2">recently added</a> to AVIF. It's also worth mentioning AV2 aims to be backwards compatible with AV1 (meaning AV2 decoder should be able to decode AV1 streams).</p>
+
+      <p>Due to the codec not being finalized yet all benchmarks provided here might not be accurate in final release. AV2 brings a lot of improvements including new partitioning method, more patterns and transforms. It aims to compete with VVC while remaining royalty-free.</p>
+
+      <h3>libaom (avm)</h3>
+
+      <p><a href="https://gitlab.com/AOMediaCodec/avm">avm</a> is a fork of the libaom en/decoder designed to extend its functionality and form a new basis for AV2 reference en/decoder.</p>
+
+      <h3>hardware acceleration</h3>
+
+      <p>No, not yet. I mean it's not even finalized.</p>
+
+    </div>
+
+
+  </body>
+</html>

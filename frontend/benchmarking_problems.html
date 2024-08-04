@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>videocodecs.info | benchmarking problems</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/benchmarking_problems.css">
+  </head>
+  <body>
+    <h1>Benchmarking Problems</h1>
+    <span>What could go wrong when benchmarking so many codecs?</span>
+    <div class="text-block">
+      <h2>Containers</h2>
+      <p>Containers are like boxes for packaging different audio/video/subtitles/metadata streams. They encapsulate stream data and allow to easily seek and synchronize streams.</p>
+      <p>In this benchmark I was trying to use container that would be most commonly used with that codec and at the same time I tried avoiding the <code>mkv</code> container as it is not supported on the web.<br>
+      (I used <code>webm</code> instead which is a subset of <code>mkv</code> and is supported by major browsers)
+      <p>There are also encoders that don't support outputing to a container.<br>
+      For example <code>xeve</code> and <code>vvenc</code> are only able to output the codec bitstream.</p>
+      <p>The main problem with containers is that they require certain overhead. Codec bitstream alone will always result lower in file size than a bitstream packaged into a container with all the metadata. The difference might not be big but it's something to take into consideration.</p>
+    </div>
+
+    <div class="text-block">
+      <h2>Quality</h2>
+      <p>The <code>quality</code> value passed to the encoder can mean different things depending on <code>rate control</code> mode used. I always tried to give encoders the best possible scenario to work with.</p>
+      <p>This means ideally I would use the <code>crf</code> mode. It reduces the quality on scenes which encoder assumes to be less demanding allowing to have overall lower file size. When using constant quality like <code>qp</code> the quality value is the same for every frame. <a href="https://slhck.info/video/2017/02/24/crf-guide.html">(an article about it)</a></p>
+      <p>Some encoders however either don't support <code>crf</code> mode or simply I was unable to get it working properly.</p>
+    </div>
+
+    <div class="text-block">
+      <h2>Why not bitrate?</h2>
+      <p>As I said above I'm currently running all of the encoders in either <code>crf</code> or <code>qp</code> <code>rate control</code> mode.</p>
+      <p>There are however a pretty common modes (<code>cbr</code> or <code>abr</code>) that allow targeting certain bitrate.<br>
+      It seems like it would be the easiest path to equally benchmark all of the codecs. However I wanted the benchmark to be more like real life usage.</p>
+      <p>Normally, when encoding clips on your own, using <code>constant bitrate</code> for different video clips is not a good idea. Some more demanding clips require more bitrate while for others, additional bitrate would be a waste of bits. That's why it's common to use <code>quality</code> based presets when encoding.<br>
+      Looking at the benchmark, user should also see which <code>quality</code> values are best to use for encoding different video clips.</p>
+      <p>Of course you can also see the resulting bitrate of each <code>quality</code> preset on graphs.</p>
+    </div>
+
+    <div class="text-block">
+      <h2>Visual comparison not usable</h2>
+      <p>This site allows you to compare video codecs on different quality presets using a modified version of <a href="https://github.com/vivictorg/vivict">vivict</a>. It is a great tool that enables detailed subjective video comparison inside a browser.</p>
+      <p>However not all codecs are supported by browsers.<br>
+      I decided that the best way to overcome this and still provide authentic video quality would be encode videos of unsupported codecs using <code>lossless vp9</code> (so called a <code>lossless proxy</code>).<br>
+      It seems to be the best way to deliever lossless video on the web (lossless h264 does not play in Firefox, av1 uses a bit more cpu with no real benefit and ffv1 is not supported by any browser).</p>
+      <p>Distributing such videos over the web can be quite challenging. Lossless 1080p video can have bitrate ranging from <code>100 to 300 mbps</code>. If you don't have very fast internet connection I would suggest downloading the <code>lossless proxy clip</code> either using torrent or directly. Then you can choose the downloaded file as source for one side of comparison. The clip will be played back from your local disk. It might not be as conventient but it's certainly an option.</p>
+      <p>You can also try to play the clip slowed down using <code>vivict</code> player speed controls.</p>
+      <p>If you still struggle to play back the clip you can reencode it in high quality using <a href="https://ffmpeg.org">FFmpeg</a> so that your cpu/gpu could play it in real time.</p>
+    </div>
+
+  </body>
+</html>

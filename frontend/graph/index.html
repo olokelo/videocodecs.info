@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>videocodecs.info | chart</title>
+    <script src="highcharts.js"></script>
+    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body>
+    <h1 id="clip-title"></h1>
+    <span id="clip-metadata"></span>
+
+    <br>
+
+    <a href="/clips.html">all clips</a> |
+    <a id="visual-comparison-url" href="">visual comparison</a>
+
+    <br>
+
+    <div class="select-vs" id="select-vs">
+      <select id="y-axis-selector" onChange="plot_render();"></select>
+      <span> vs </span>
+      <select id="x-axis-selector" onChange="plot_render();"></select>
+    </div>
+    <div id="container"></div>
+
+    <div id="modal-overlay">
+      <div id="modal-content">
+
+        <button id="modal-close-btn">x</button>
+
+        <h4 id="modal-title"></h4>
+        <br>
+        <select id="modal-graph-selector"></select>
+        <div id="modal-container"></div>
+
+        <div id="modal-codec-info">
+          <a id="modal-codec-info-version" class="far-left" target="_blank">codec version</a>
+          <a id="modal-codec-info-raw" class="far-right" target="_blank">raw data</a>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="core.js"></script>
+    <script src="modal.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

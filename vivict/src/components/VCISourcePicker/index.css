@@ -1,0 +1,40 @@
+.vci-source-picker {
+    opacity: 1.0;
+    z-index: 14;
+    color: #fff;
+    background-color: #0003;
+}
+
+.vci-source-picker:hover {
+    opacity: 1.0;
+    background-color: #000c;
+}
+
+.vci-source-picker label {
+    padding-right: 0.3rem;
+}
+
+.spacer {
+    width: 2rem;
+    display: inline-block;
+}
+
+.source-info {
+    font-family: monospace, monospace;
+    font-size: 0.8rem;
+    color: #f04;
+    white-space: pre-wrap;
+}
+
+.source-file-input {
+    font-size: medium;
+    height: 20px;
+    display: inline-block;
+    cursor: pointer;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.source-file-input > input[type="file"] {
+    display: none;
+}

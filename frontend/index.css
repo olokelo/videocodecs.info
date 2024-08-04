@@ -1,0 +1,76 @@
+body {
+  margin: auto;
+  width: 96%;
+  height: 100%;
+  font: 15px monospace;
+  color: #fff;
+  background: #000;
+  text-align: center;
+  padding: 0 2%;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  padding-top: 1rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+  margin: 0;
+  padding-top: 1rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: normal;
+}
+
+.text-block {
+  padding-top: 4rem;
+}
+
+.big-text {
+  font-size: 1.3em;
+}
+
+code {
+  background: #222;
+  padding: 0 2px;
+  color: #0f4
+}
+
+a {
+  color: #0bd;
+}
+
+a:hover {
+  color: #f09;
+}
+
+.select-vs {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+select {
+  background: #000;
+  font-weight: bold;
+  border: 2px solid #f04;
+  color: #fff;
+  padding: 5px;
+  outline: none;
+}
+
+select option {
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+#container {
+  width: auto;
+  height: 80vh;
+}
+

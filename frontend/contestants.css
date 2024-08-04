@@ -1,0 +1,26 @@
+h2 {
+  font-size: 1.4rem;
+  margin: 0;
+  padding: 0.5rem 0 0.2rem 0;
+}
+
+.contestant-block {
+  margin-top: 3rem;
+  padding: 0 0.5rem;
+  padding-bottom: 0.4rem;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 1rem;
+}
+
+.card-content {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  background-color: #111;
+}
+
+hr {
+  border: 1px solid #333;
+}
